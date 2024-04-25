@@ -1,22 +1,22 @@
 import pygame
 import sys
 import reader
-import draw_text as D
+import functions as D
 
 pygame.init()
 mainClock = pygame.time.Clock()
 from pygame.locals import *
 
 
-data = reader.readData()
-team1 = data['Teams']['teams'][0]
-team2 = data['Teams']['teams'][1] 
-team3 = data['Teams']['teams'][2]
-team4 = data['Teams']['teams'][3]
+data = reader.readData() #obtiene los diccionarios del jason
+team1 = data['Teams']['teams'][0] #
+team2 = data['Teams']['teams'][1] #Separa los diccionarios  
+team3 = data['Teams']['teams'][2] # de acuerdo al equipo
+team4 = data['Teams']['teams'][3] #
 
 res = (800, 800)
-main_font = pygame.font.SysFont(None, 50)
-regular_font = pygame.font.SysFont(None, 30)
+main_font = pygame.font.SysFont(None, 50) #fuente básica de la pantalla
+regular_font = pygame.font.SysFont(None, 30)   #fuente de menor tamaño
 screen = pygame.display.set_mode(res)
 pygame.display.set_caption("GoalKeeper")
 
@@ -75,6 +75,7 @@ def team1_screen():
     while running:
         screen.fill((56, 172, 113))
  
+        #Escribe en pantalla a los jugadores
         D.draw_Text(team1["name"], main_font, (255, 255, 255), screen, 20, 10)
         D.draw_Text("Main Goalkeeper: " + team1["main_goalkeeper"], regular_font, (255,255,255), screen, 20, 80)
         D.draw_Text("Player one: " + team1["player_one"], regular_font, (255,255,255), screen, 20, 120)
@@ -114,6 +115,7 @@ def team2_screen():
     while running:
         screen.fill((56, 172, 113))
  
+         #Escribe en pantalla a los jugadores
         D.draw_Text(team2["name"], main_font, (255, 255, 255), screen, 20, 10)
         D.draw_Text("Main Goalkeeper: " + team2["main_goalkeeper"], regular_font, (255,255,255), screen, 20, 80)
         D.draw_Text("Player one: " + team2["player_one"], regular_font, (255,255,255), screen, 20, 120)
@@ -153,6 +155,7 @@ def team3_screen():
     while running:
         screen.fill((56, 172, 113))
  
+         #Escribe en pantalla a los jugadores
         D.draw_Text(team3["name"], main_font, (255, 255, 255), screen, 20, 10)
         D.draw_Text("Main Goalkeeper: " + team3["main_goalkeeper"], regular_font, (255,255,255), screen, 20, 80)
         D.draw_Text("Player one: " + team3["player_one"], regular_font, (255,255,255), screen, 20, 120)
@@ -192,6 +195,7 @@ def team4_screen():
     while running:
         screen.fill((56, 172, 113))
  
+         #Escribe en pantalla a los jugadores
         D.draw_Text(team4["name"], main_font, (255, 255, 255), screen, 20, 10)
         D.draw_Text("Main Goalkeeper: " + team4["main_goalkeeper"], regular_font, (255,255,255), screen, 20, 80)
         D.draw_Text("Player one: " + team4["player_one"], regular_font, (255,255,255), screen, 20, 120)

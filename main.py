@@ -1,14 +1,14 @@
 import pygame, sys
 import teams_page as T
-import draw_text as D
+import functions as D
 
 mainClock = pygame.time.Clock()
 from pygame.locals import *
 pygame.init()
 
 res = (800, 800)
-main_font = pygame.font.SysFont(None, 50)
-regular_font = pygame.font.SysFont(None, 30)
+main_font = pygame.font.SysFont(None, 50) #fuente básica de la pantalla
+regular_font = pygame.font.SysFont(None, 30) #fuente de menor tamaño
 screen = pygame.display.set_mode(res)
 pygame.display.set_caption("GoalKeeper")
 
