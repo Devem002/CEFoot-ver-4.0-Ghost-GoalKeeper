@@ -1,4 +1,5 @@
 import random
+import time
 
 #E: recive el string a dibujar, la fuente, el color, donde será dibujada y sus medidas
 #S: no retorna nada
@@ -24,12 +25,22 @@ def flip_coin():
 #S: no posee
 # dado un  numero aleatorio y uno ingresado dicta si el numero es igual
 def reveal_goalkeeper():
-    ball = int(input("Ingrese un numero del 1 al 6: "))
-    goalkeeper = random.randint(1,6)
 
-    if ball == goalkeeper:
-        print ("Goal")
-        return
-    print("Fail")
-    return 
+    duration = 5
+    flag = False
 
+    while duration != 0:
+        if flag:
+            ball = int(input("Ingrese un numero del 1 al 6: "))
+            goalkeeper = random.randint(1,6)
+            if ball == goalkeeper:
+                print ("Goal")
+                return
+            print("Fail")
+            return
+        duration -= 1
+        time.sleep(1) 
+    print("No time")
+    return
+
+reveal_goalkeeper()
