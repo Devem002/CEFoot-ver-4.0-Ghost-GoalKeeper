@@ -229,3 +229,4 @@ def team4_screen():
         
         pygame.display.update()
         mainClock.tick(60)
+Teams()
