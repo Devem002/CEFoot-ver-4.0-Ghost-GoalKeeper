@@ -66,8 +66,8 @@ def reveal_goalkeeper():
 
     duration = 5
     flag = True
-    bu_sound = pygame.mixer.Sound("buu.mp3")
-    ye_sound = pygame.mixer.Sound("yee.mp3") 
+    bu_sound = pygame.mixer.Sound("sounds/buu.mp3")
+    ye_sound = pygame.mixer.Sound("sounds/yee.mp3") 
     while duration != 0:
         if flag:
             ball = int(input("Ingrese un numero del 1 al 6: "))
@@ -106,4 +106,4 @@ def reveal_goalkeeper():
     print("No time")
     return
 
-reveal_goalkeeper()
+#reveal_goalkeeper()

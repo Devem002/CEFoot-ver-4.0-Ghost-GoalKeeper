@@ -3,7 +3,7 @@
     "teams": [
       {
         "name": "Liverpool",
-        "shield": "C:/Users/diego/Escritorio/CEFoot-ver-4.0-Ghost-GoalKeeper/images/Liverpool.png",
+        "shield": "images/Liverpool.png",
         "main_goalkeeper": "Alisson",
         "main_goalkeeper_photo": "",
         "player_one": "Mohamed Salah",
