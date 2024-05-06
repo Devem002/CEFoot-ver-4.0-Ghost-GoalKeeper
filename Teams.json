@@ -27,7 +27,7 @@
       },
       {
         "name": "FC Barcelona",
-        "shield": "",
+        "shield": "images/Barcelona.png",
         "main_goalkeeper": "Marc-Andre Ter Stegen",
         "main_goalkeeper_photo": "",
         "player_one": "Robert Lewandoski",
@@ -51,7 +51,7 @@
       },
       {
         "name": "Manchester City",
-        "shield": "",
+        "shield": "images/City.png",
         "main_goalkeeper": "Ederson",
         "main_goalkeeper_photo": "",
         "player_one": "Erling Haaland",
@@ -75,7 +75,7 @@
       },
       {
         "name": "Real Madrid",
-        "shield": "",
+        "shield": "images/Madrid.png",
         "main_goalkeeper": "Thibaut Cortois",
         "main_goalkeeper_photo": "",
         "player_one": "Luka Modric",

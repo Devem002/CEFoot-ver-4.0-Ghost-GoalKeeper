@@ -16,13 +16,9 @@ def draw_Text(text, font, color, surface, x, y):
 #E: no recibe nada
 #S: retorna true en caso de salir el primer equipo y false en caso contrario
 #simula el tiro de una mondeda
-def flip_coin():
-    coin = random.randint(0,1)
-    if coin == 0:
-        print("Equipo 1")
-        return True
-    print("Equipo 2")
-    return False
+def flip_coin()-> int:
+    return random.randint(0,1)
+
 #E: un entero
 #S: un booleano
 #funciones indice que determinan el lugar de los porteros
@@ -107,3 +103,5 @@ def reveal_goalkeeper():
     return
 
 #reveal_goalkeeper()
+
+
