@@ -7,6 +7,12 @@ mainClock = pygame.time.Clock()
 from pygame.locals import *
 pygame.init()
 
+team1_goals = 0
+team2_goals = 0
+team1_misses = 0
+team2_misses = 0
+team1_lost_time = 0
+team2_lost_time = 0
 team_1_game = []
 team_2_game = []
 teams_gameplay = [[],[]]
@@ -134,10 +140,10 @@ def main_menu():
         mainClock.tick(60)
 
 data = readData() #obtiene los diccionarios del jason
-team1 = data['Teams']['teams'][0] #
-team2 = data['Teams']['teams'][1] #Separa los diccionarios  
-team3 = data['Teams']['teams'][2] # de acuerdo al equipo
-team4 = data['Teams']['teams'][3] #
+team1 = {'name': 'Liverpool', 'shield': 'images/Liverpool.png', 'main_goalkeeper': 'Alisson', 'main_goalkeeper_photo': '', 'player_one': 'Mohamed Salah', 'player_one_photo': '', 'player_two': 'Darwin Nunez', 'player_two_photo': '', 'player_three': 'Diego Jota', 'player_three_photo': '', 'player_four': 'Alexis Mac Alister', 'player_four_photo': '', 'player_five': 'Virgil Van Dijk', 'player_five_photo': '', 'bench_goalkeeper': 'Caoimhin Kellher', 'bench_goalkeeper_photo': '', 'bench_one': 'Luis Diaz', 'bench_one_photo': '', 'bench_two': 'Trent Alexander-Arnold', 'bench-two_photo': '', 'bench_three': 'Cody Gakpo', 'bench_three_photo': ''} #
+team2 = {'name': 'FC Barcelona', 'shield': 'images/Barcelona.png', 'main_goalkeeper': 'Marc-Andre Ter Stegen', 'main_goalkeeper_photo': '', 'player_one': 'Robert Lewandoski', 'player_one_photo': '', 'player_two': 'Raphinha', 'player_two_photo': '', 'player_three': 'Ilkay Gundogan', 'player_three_photo': '', 'player_four': 'Ronald Araujo', 'player_four_photo': '', 'player_five': 'Frenkie de Jong', 'player_five_photo': '', 'bench_goalkeeper': 'Inaki Pena', 'bench_goalkeeper_photo': '', 'bench_one': 'Lamine Yamal', 'bench_one_photo': '', 'bench_two': 'Joao Felix', 'bench-two_photo': '', 'bench_three': 'Victor Roque', 'bench_three_photo': ''} #Separa los diccionarios  
+team3 = {'name': 'Manchester City', 'shield': 'images/City.png', 'main_goalkeeper': 'Ederson', 'main_goalkeeper_photo': '', 'player_one': 'Erling Haaland', 'player_one_photo': '', 'player_two': 'Phil Foden', 'player_two_photo': '', 'player_three': 'Kevin De Bruyne', 'player_three_photo': '', 'player_four': 'Jack Grealish', 'player_four_photo': '', 'player_five': 'Jeremi Doku', 'player_five_photo': '', 'bench_goalkeeper': 'Ortega Moreno', 'bench_goalkeeper_photo': '', 'bench_one': 'Julian Alvarez', 'bench_one_photo': '', 'bench_two': 'Bernardo Silva', 'bench-two_photo': '', 'bench_three': 'Rodri', 'bench_three_photo': ''} # de acuerdo al equipo
+team4 = {'name': 'Real Madrid', 'shield': 'images/Madrid.png', 'main_goalkeeper': 'Thibaut Cortois', 'main_goalkeeper_photo': '', 'player_one': 'Luka Modric', 'player_one_photo': '', 'player_two': 'Rodrygo Goes', 'player_two_photo': '', 'player_three': 'Vini JR', 'player_three_photo': '', 'player_four': 'Jude Bellingham', 'player_four_photo': '', 'player_five': 'Dani Carvajal', 'player_five_photo': '', 'bench_goalkeeper': 'Andriy Lunin', 'bench_goalkeeper_photo': '', 'bench_one': 'Fede Valverde', 'bench_one_photo': '', 'bench_two': 'Tony Kross', 'bench-two_photo': '', 'bench_three': 'Brahim Diaz', 'bench_three_photo': ''} #
 
 def Teams():
     running = True
@@ -566,6 +572,7 @@ def choose_team1xteam2():
         if bench.draw_button():
              team_1_game = [team1["main_goalkeeper"], team1["player_one"], team1["player_two"], team1["bench_one"], team1["bench_two"], team1["bench_three"]]
              team_2_game = [team2["main_goalkeeper"], team2["player_one"], team2["player_two"], team2["bench_one"], team2["bench_two"], team2["bench_three"]]
+             play_game()
         if exit.draw_button():
              main_play_page()
         for event in pygame.event.get():
@@ -579,6 +586,7 @@ def choose_team1xteam2():
             pygame.display.update()
             mainClock.tick(60)
 def choose_team1xteam3():
+     global team_2_game, team_1_game
      running = True
      while running:
         screen.fill((56, 172, 113))
@@ -594,10 +602,12 @@ def choose_team1xteam3():
         if standard.draw_button():
             team_1_game = [team1["main_goalkeeper"], team1["player_one"], team1["player_two"], team1["player_three"], team1["player_four"], team1["player_five"]]
             team_2_game = [team3["main_goalkeeper"], team3["player_one"], team3["player_two"], team3["player_three"], team3["player_four"], team3["player_five"]]
+            play_game()
 
         if bench.draw_button():
              team_1_game = [team1["main_goalkeeper"], team1["player_one"], team1["player_two"], team1["bench_one"], team1["bench_two"], team1["bench_three"]]
              team_2_game = [team3["main_goalkeeper"], team3["player_one"], team3["player_two"], team3["bench_one"], team3["bench_two"], team3["bench_three"]]
+             play_game()
 
         if exit.draw_button():
              main_play_page()
@@ -612,6 +622,7 @@ def choose_team1xteam3():
             pygame.display.update()
             mainClock.tick(60)
 def choose_team1xteam4():
+     global team_2_game, team_1_game
      running = True
      while running:
         screen.fill((56, 172, 113))
@@ -627,10 +638,12 @@ def choose_team1xteam4():
         if standard.draw_button():
             team_1_game = [team1["main_goalkeeper"], team1["player_one"], team1["player_two"], team1["player_three"], team1["player_four"], team1["player_five"]]
             team_2_game = [team4["main_goalkeeper"], team4["player_one"], team4["player_two"], team4["player_three"], team4["player_four"], team4["player_five"]]
+            play_game()
 
         if bench.draw_button():
              team_1_game = [team1["main_goalkeeper"], team1["player_one"], team1["player_two"], team1["bench_one"], team1["bench_two"], team1["bench_three"]]
              team_2_game = [team4["main_goalkeeper"], team4["player_one"], team4["player_two"], team4["bench_one"], team4["bench_two"], team4["bench_three"]]
+             play_game()
 
         if exit.draw_button():
              main_play_page()
@@ -646,6 +659,8 @@ def choose_team1xteam4():
             mainClock.tick(60)
 def choose_team2xteam1():
     running = True
+    global team_2_game, team_1_game
+
     while running:
         screen.fill((56, 172, 113))
         background_skye(image)
@@ -660,10 +675,12 @@ def choose_team2xteam1():
         if standard.draw_button():
             team_2_game = [team1["main_goalkeeper"], team1["player_one"], team1["player_two"], team1["player_three"], team1["player_four"], team1["player_five"]]
             team_1_game = [team2["main_goalkeeper"], team2["player_one"], team2["player_two"], team2["player_three"], team2["player_four"], team2["player_five"]]
+            play_game()
 
         if bench.draw_button():
              team_2_game = [team1["main_goalkeeper"], team1["player_one"], team1["player_two"], team1["bench_one"], team1["bench_two"], team1["bench_three"]]
              team_1_game = [team2["main_goalkeeper"], team2["player_one"], team2["player_two"], team2["bench_one"], team2["bench_two"], team2["bench_three"]]
+             play_game()
 
         if exit.draw_button():
              main_play_page()
@@ -679,6 +696,8 @@ def choose_team2xteam1():
             mainClock.tick(60)
 def choose_team2xteam3():
     running = True
+    global team_2_game, team_1_game
+
     while running:
         screen.fill((56, 172, 113))
         background_skye(image)
@@ -693,10 +712,12 @@ def choose_team2xteam3():
         if standard.draw_button():
             team_2_game = [team3["main_goalkeeper"], team3["player_one"], team3["player_two"], team3["player_three"], team3["player_four"], team3["player_five"]]
             team_1_game = [team2["main_goalkeeper"], team2["player_one"], team2["player_two"], team2["player_three"], team2["player_four"], team2["player_five"]]
+            play_game()
 
         if bench.draw_button():
              team_1_game = [team2["main_goalkeeper"], team2["player_one"], team2["player_two"], team2["bench_one"], team2["bench_two"], team2["bench_three"]]
              team_2_game = [team3["main_goalkeeper"], team3["player_one"], team3["player_two"], team3["bench_one"], team3["bench_two"], team3["bench_three"]]
+             play_game()
 
         if exit.draw_button():
              main_play_page()
@@ -712,6 +733,8 @@ def choose_team2xteam3():
             mainClock.tick(60)
 def choose_team2xteam4():
     running = True
+    global team_2_game, team_1_game
+
     while running:
         screen.fill((56, 172, 113))
         background_skye(image)
@@ -726,10 +749,12 @@ def choose_team2xteam4():
         if standard.draw_button():
             team_2_game = [team4["main_goalkeeper"], team4["player_one"], team4["player_two"], team4["player_three"], team4["player_four"], team4["player_five"]]
             team_1_game = [team2["main_goalkeeper"], team2["player_one"], team2["player_two"], team2["player_three"], team2["player_four"], team2["player_five"]]
+            play_game()
 
         if bench.draw_button():
              team_1_game = [team2["main_goalkeeper"], team2["player_one"], team2["player_two"], team2["bench_one"], team2["bench_two"], team2["bench_three"]]
              team_2_game = [team4["main_goalkeeper"], team4["player_one"], team4["player_two"], team4["bench_one"], team4["bench_two"], team4["bench_three"]]
+             play_game()
 
         if exit.draw_button():
              main_play_page()
@@ -745,6 +770,7 @@ def choose_team2xteam4():
             mainClock.tick(60)
 def choose_team3xteam1():
     running = True
+    global team_2_game, team_1_game
     while running:
         screen.fill((56, 172, 113))
         background_skye(image)
@@ -759,10 +785,12 @@ def choose_team3xteam1():
         if standard.draw_button():
             team_2_game = [team1["main_goalkeeper"], team1["player_one"], team1["player_two"], team1["player_three"], team1["player_four"], team1["player_five"]]
             team_1_game = [team3["main_goalkeeper"], team3["player_one"], team3["player_two"], team3["player_three"], team3["player_four"], team3["player_five"]]
+            play_game()
 
         if bench.draw_button():
              team_2_game = [team1["main_goalkeeper"], team1["player_one"], team1["player_two"], team1["bench_one"], team1["bench_two"], team1["bench_three"]]
              team_1_game = [team3["main_goalkeeper"], team3["player_one"], team3["player_two"], team3["bench_one"], team3["bench_two"], team3["bench_three"]]
+             play_game()
         if exit.draw_button():
              main_play_page()
         for event in pygame.event.get():
@@ -777,6 +805,7 @@ def choose_team3xteam1():
             mainClock.tick(60)
 def choose_team3xteam2():
     running = True
+    global team_2_game, team_1_game
     while running:
         screen.fill((56, 172, 113))
         background_skye(image)
@@ -791,10 +820,12 @@ def choose_team3xteam2():
         if standard.draw_button():
             team_1_game = [team3["main_goalkeeper"], team3["player_one"], team3["player_two"], team3["player_three"], team3["player_four"], team3["player_five"]]
             team_2_game = [team2["main_goalkeeper"], team2["player_one"], team2["player_two"], team2["player_three"], team2["player_four"], team2["player_five"]]
+            play_game()
 
         if bench.draw_button():
              team_2_game = [team2["main_goalkeeper"], team2["player_one"], team2["player_two"], team2["bench_one"], team2["bench_two"], team2["bench_three"]]
              team_1_game = [team3["main_goalkeeper"], team3["player_one"], team3["player_two"], team3["bench_one"], team3["bench_two"], team3["bench_three"]]
+             play_game()
         if exit.draw_button():
              main_play_page()
         for event in pygame.event.get():
@@ -809,6 +840,7 @@ def choose_team3xteam2():
             mainClock.tick(60)
 def choose_team3xteam4():
     running = True
+    global team_2_game, team_1_game
     while running:
         screen.fill((56, 172, 113))
         background_skye(image)
@@ -823,10 +855,12 @@ def choose_team3xteam4():
         if standard.draw_button():
             team_1_game = [team3["main_goalkeeper"], team3["player_one"], team3["player_two"], team3["player_three"], team3["player_four"], team3["player_five"]]
             team_2_game = [team4["main_goalkeeper"], team4["player_one"], team4["player_two"], team4["player_three"], team4["player_four"], team4["player_five"]]
+            play_game()
 
         if bench.draw_button():
              team_2_game = [team4["main_goalkeeper"], team4["player_one"], team4["player_two"], team4["bench_one"], team4["bench_two"], team4["bench_three"]]
              team_1_game = [team3["main_goalkeeper"], team3["player_one"], team3["player_two"], team3["bench_one"], team3["bench_two"], team3["bench_three"]]
+             play_game()
         if exit.draw_button():
              main_play_page()
         for event in pygame.event.get():
@@ -841,6 +875,7 @@ def choose_team3xteam4():
             mainClock.tick(60)
 def choose_team4xteam1():
     running = True
+    global team_2_game, team_1_game
     while running:
         screen.fill((56, 172, 113))
         background_skye(image)
@@ -855,10 +890,12 @@ def choose_team4xteam1():
         if standard.draw_button():
             team_2_game = [team1["main_goalkeeper"], team1["player_one"], team1["player_two"], team1["player_three"], team1["player_four"], team1["player_five"]]
             team_1_game = [team4["main_goalkeeper"], team4["player_one"], team4["player_two"], team4["player_three"], team4["player_four"], team4["player_five"]]
+            play_game()
 
         if bench.draw_button():
              team_2_game = [team1["main_goalkeeper"], team1["player_one"], team1["player_two"], team1["bench_one"], team1["bench_two"], team1["bench_three"]]
              team_1_game = [team4["main_goalkeeper"], team4["player_one"], team4["player_two"], team4["bench_one"], team4["bench_two"], team4["bench_three"]]
+             play_game()
         if exit.draw_button():
              main_play_page()
         for event in pygame.event.get():
@@ -873,6 +910,7 @@ def choose_team4xteam1():
             mainClock.tick(60)
 def choose_team4xteam2():
     running = True
+    global team_2_game, team_1_game
     while running:
         screen.fill((56, 172, 113))
         background_skye(image)
@@ -887,10 +925,12 @@ def choose_team4xteam2():
         if standard.draw_button():
             team_1_game = [team4["main_goalkeeper"], team4["player_one"], team4["player_two"], team4["player_three"], team4["player_four"], team4["player_five"]]
             team_2_game = [team2["main_goalkeeper"], team2["player_one"], team2["player_two"], team2["player_three"], team2["player_four"], team2["player_five"]]
+            play_game()
 
         if bench.draw_button():
              team_2_game = [team2["main_goalkeeper"], team2["player_one"], team2["player_two"], team2["bench_one"], team2["bench_two"], team2["bench_three"]]
              team_1_game = [team4["main_goalkeeper"], team4["player_one"], team4["player_two"], team4["bench_one"], team4["bench_two"], team4["bench_three"]]
+             play_game()
         if exit.draw_button():
              main_play_page()
         for event in pygame.event.get():
@@ -905,6 +945,8 @@ def choose_team4xteam2():
             mainClock.tick(60)
 def choose_team4xteam3():
     running = True
+    global team_2_game, team_1_game
+
     while running:
         screen.fill((56, 172, 113))
         background_skye(image)
@@ -919,10 +961,12 @@ def choose_team4xteam3():
         if standard.draw_button():
             team_2_game = [team3["main_goalkeeper"], team3["player_one"], team3["player_two"], team3["player_three"], team3["player_four"], team3["player_five"]]
             team_1_game = [team4["main_goalkeeper"], team4["player_one"], team4["player_two"], team4["player_three"], team4["player_four"], team4["player_five"]]
+            play_game()
 
         if bench.draw_button():
              team_1_game = [team4["main_goalkeeper"], team4["player_one"], team4["player_two"], team4["bench_one"], team4["bench_two"], team4["bench_three"]]
              team_2_game = [team3["main_goalkeeper"], team3["player_one"], team3["player_two"], team3["bench_one"], team3["bench_two"], team3["bench_three"]]
+             play_game()
         if exit.draw_button():
              main_play_page()
         for event in pygame.event.get():
@@ -936,27 +980,86 @@ def choose_team4xteam3():
             pygame.display.update()
             mainClock.tick(60)
 
+def not_coin(n : int) -> int:
+    if n == 0:
+        return 1
+    return 0
 
 def play_game():
+    global team1_goals, team1_lost_time, team1_misses, team2_goals, team2_misses, team2_lost_time
     running = True
-    print(team_2_game)
     teams_gameplay[0], teams_gameplay[1] = team_1_game, team_2_game
     coin = D.flip_coin()
+    bu_sound = pygame.mixer.Sound("sounds/buu.mp3")
+    ye_sound = pygame.mixer.Sound("sounds/yee.mp3") 
 
     if coin == 0:
-        print ("Team 1 starts \n")            
+        print ("Team 1 starts")            
         print (teams_gameplay[0])
-    else:
-        print("Team 2 starts \n")
+        print("Team 2 goes seccond")
         print(teams_gameplay[1])
+    else:
+        print("Team 2 starts")
+        print(teams_gameplay[1])
+        print("Team 1 goes seccond")
+        print(teams_gameplay[0])
+
     while running:
         
         screen.fill((56, 172, 113))
         background_skye(image)
 
         players = 5
-        count = 0
-
+        i = 0
+        j = 0
+        Pin = 0
+        time.sleep(3)
+        while players > 0:
+            duration = 5
+            print("Patea: " + teams_gameplay[coin][i+1])
+            while duration != 0:
+                if Pin == 1:
+                    if D.reveal_goalkeeper(Pin):
+                        ye_sound.play()
+                        team1_goals += 1
+                        break
+                    else:
+                        bu_sound.play()
+                        team1_misses += 1
+                        break
+                
+                time.sleep(1)
+                duration -= 1
+                if duration == 4:
+                    bu_sound.play()
+                    print("no time")
+                    time.sleep(5)
+                    team1_lost_time += 1 
+            print("Patea: " + teams_gameplay[not_coin(coin)][j+1])
+            duration = 5
+            while duration != 0:
+                if Pin == 1:
+                    if D.reveal_goalkeeper(Pin):
+                        ye_sound.play()
+                        team2_goals += 1
+                        break
+                    else:
+                        bu_sound.play()
+                        team2_misses += 1
+                        break
+                
+                time.sleep(1)
+                duration -= 1
+                if duration == 4:
+                    bu_sound.play()
+                    print("no time")
+                    time.sleep(5)
+                    team2_lost_time += 1
+            time.sleep(3)
+            players -= 1
+            i += 1
+            j += 1
+        statistics()
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
@@ -968,5 +1071,48 @@ def play_game():
             pygame.display.update()
             mainClock.tick(60)
 
-main_menu()
+def statistics():
+    global team1_goals, team2_goals, team1_misses, team2_misses, team1_lost_time, team2_lost_time
+    running = True
+
+    team1_misses = 1
+    team2_goals = 2
+    while running:
+        screen.fill((55, 55, 55))
+        D.draw_Text("Team 1", main_font, white, screen, 60, 30)
+        D.draw_Text("Team 2", main_font, white, screen, 860, 30)
+
+        D.draw_Text("Team 1 goals: " + str(team1_goals), regular_font, white, screen, 60, 130)
+        D.draw_Text("Team 1 misses: " + str(team1_misses), regular_font, white, screen, 60, 230)
+        D.draw_Text("Team 1 misses by time: " + str(team1_lost_time), regular_font, white, screen, 60, 320)
+        D.draw_Text("Team 2 misses by time: " + str(team2_lost_time), regular_font, white, screen, 860, 320)
+        D.draw_Text("Team 2 misses: " + str(team2_goals), regular_font, white, screen, 860, 130)
+        D.draw_Text("Team 2 misses: " + str(team2_misses), regular_font, white, screen, 860, 230)
+
+        exit = button(860, 530, "Exit")
+        reset = button(60, 530, "Reset")
+
+        if exit.draw_button():
+            pygame.quit()
+            sys.exit()
+        if reset.draw_button():
+            team1_goals = 0
+            team1_lost_time = 0
+            team1_misses = 0
+            team2_goals = 0
+            team2_lost_time = 0
+            team2_misses = 0
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == KEYDOWN:
+                if event.key == K_ESCAPE:
+                    running = False
+        
+            pygame.display.update()
+            mainClock.tick(60)
+
+#main_menu()
+statistics()
 
